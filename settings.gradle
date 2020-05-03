@@ -1,0 +1,3 @@
+rootProject.name='SimpleInitRecycler'
+include ':app'
+include ':app', ':simpleinitrecyclerview'
