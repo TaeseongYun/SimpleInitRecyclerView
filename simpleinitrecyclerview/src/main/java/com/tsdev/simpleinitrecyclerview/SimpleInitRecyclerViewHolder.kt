@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-abstract class SimpleInitRecyclerViewHolder<ITEM, VIEW_HOLDER_VM : RecyclerAdapterData<ITEM>>(
+abstract class SimpleInitRecyclerViewHolder<ITEM, VIEW_HOLDER_VM : BaseRecyclerNotifyInterface<ITEM>>(
     parent: ViewGroup,
     override val layoutRes: Int
 ) :

@@ -1,8 +1,17 @@
 package com.tsdev.simpleinitrecycler
 
 import com.tsdev.simpleinitrecyclerview.RecyclerAdapterData
+import com.tsdev.simpleinitrecyclerview.BaseRecyclerNotifyInterface
 
-class ExampleRecyclerAdapterViewModel : RecyclerAdapterData<ExampleData> {
-    override val adapterItem: MutableList<ExampleData>
-        get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
+class ExampleRecyclerAdapterViewModel(recyclerData: RecyclerAdapterData<ExampleData>) :
+    BaseRecyclerNotifyInterface<ExampleData>(recyclerData) {
+
+
+    lateinit var testOnClick: (adapterPosition: Int, item: ExampleData) -> Unit
+
+    fun onClickItem(adapterPosition: Int) {
+        recyclerAdapterData.getItem(adapterPosition).cast<ExampleData>().run {
+            testOnClick(adapterPosition, this)
+        }
+    }
 }

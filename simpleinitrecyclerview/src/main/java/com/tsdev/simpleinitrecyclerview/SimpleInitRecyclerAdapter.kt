@@ -3,16 +3,26 @@ package com.tsdev.simpleinitrecyclerview
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-abstract class SimpleInitRecyclerAdapter<VIEW_HOLDER_VM : RecyclerAdapterData<ITEM>, ITEM>(
-    createRepository: (recyclerAdapterData: RecyclerAdapterData<*>) -> VIEW_HOLDER_VM
+abstract class SimpleInitRecyclerAdapter<VIEW_HOLDER_VM : BaseRecyclerNotifyInterface<ITEM>, ITEM>(
+    createRepository: (recyclerAdapterData: RecyclerAdapterData<ITEM>) -> VIEW_HOLDER_VM
 ) :
     RecyclerView.Adapter<SimpleInitRecyclerViewHolder<ITEM, VIEW_HOLDER_VM>>() {
 
-    private val adapterRepository: RecyclerAdapterData<*> by lazy {
-        RecyclerAdapterRepository()
+    val adapterRepository: RecyclerAdapterData<ITEM> by lazy {
+        AbstractRecyclerAdapterRepository<ITEM>()
     }
 
     val adapterViewModel: VIEW_HOLDER_VM = createRepository(adapterRepository)
+
+    init {
+        adapterViewModel.run {
+            notifiedItemChange = this@SimpleInitRecyclerAdapter::notifyDataSetChanged
+            notifiedItemChangePosition = this@SimpleInitRecyclerAdapter::notifyItemChanged
+            notifiedRangeRemove = this@SimpleInitRecyclerAdapter::notifyItemRangeRemoved
+            notifiedRemove = this@SimpleInitRecyclerAdapter::notifyItemRemoved
+        }
+    }
+
 
     override fun getItemCount(): Int = adapterRepository.itemCount
 
