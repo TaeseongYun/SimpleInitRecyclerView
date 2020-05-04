@@ -3,7 +3,7 @@ package com.tsdev.simpleinitrecyclerview
 open class AbstractRecyclerAdapterRepository<ITEM> :
     RecyclerAdapterData<ITEM> {
 
-    final override val adapterItem: MutableList<ITEM> = mutableListOf()
+    private val adapterItem = mutableListOf<ITEM>()
 
     override fun addItem(item: ITEM) {
         adapterItem.add(item)
@@ -25,5 +25,6 @@ open class AbstractRecyclerAdapterRepository<ITEM> :
         adapterItem.removeAt(position)
     }
 
-    override val itemCount: Int = adapterItem.size
+    override val itemCount: Int
+        get() = adapterItem.size
 }
