@@ -8,4 +8,6 @@ abstract class BaseRecyclerNotifyInterface<ITEM>(val recyclerAdapterData: Recycl
     lateinit var notifiedRemove: (position: Int) -> Unit
 
     lateinit var notifiedRangeRemove: (first: Int, second: Int) -> Unit
+
+    lateinit var notifiedItemInsert: (position: Int) -> Unit
 }

@@ -20,6 +20,7 @@ abstract class SimpleInitRecyclerAdapter<VIEW_HOLDER_VM : BaseRecyclerNotifyInte
             notifiedItemChangePosition = this@SimpleInitRecyclerAdapter::notifyItemChanged
             notifiedRangeRemove = this@SimpleInitRecyclerAdapter::notifyItemRangeRemoved
             notifiedRemove = this@SimpleInitRecyclerAdapter::notifyItemRemoved
+            notifiedItemInsert = this@SimpleInitRecyclerAdapter::notifyItemInserted
         }
     }
 
